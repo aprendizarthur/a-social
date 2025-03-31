@@ -1,0 +1,4 @@
+<?php 
+//ARQUIVO EXCLUSIVO PARA CONEXÃO COM O DB
+
+?>

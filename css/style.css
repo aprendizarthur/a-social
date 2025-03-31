@@ -1,0 +1,71 @@
+/* Estilos HTML Tags Globais */
+body{
+    overflow: hidden;
+}
+
+/* Estilos Barra de Ferramentas */
+#ferramentas{
+    background-color: #FFFFFF; 
+    border: solid 1px #e3e7e9;
+    height: 100vh;
+    padding: 15px;
+}
+
+/* Estilos Feed */
+#feed{
+    background-color: #FFFFFF;
+    border-top: solid 1px #e3e7e9;
+    border-bottom: solid 1px #e3e7e9;
+    border-right: solid 1px #e3e7e9;
+    overflow-y: auto;  
+    height: 100vh;
+    padding: 15px;
+}
+
+/* Estilos Pesquisa */
+#pesquisa{
+    background-color: #FFFFFF;
+    border: solid 1px #e3e7e9;
+    height: 100vh; 
+    padding: 15px;
+}
+
+/* Fontes */
+.ubuntu-light {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+.ubuntu-regular {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  } 
+
+.ubuntu-bold {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+
+/* Proporções Fontes */
+h1{
+    font-size: 1.802rem !important;
+}
+
+h2{
+    font-size: 1.602rem !important;
+}
+
+h3{
+    font-size: 1.402rem !important;
+}
+
+p{
+    font-size: 1rem !important;
+}
+
+small{
+    font-size: 0.889rem !important;
+}
