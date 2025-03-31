@@ -9,6 +9,49 @@ body{
     border: solid 1px #e3e7e9;
     height: 100vh;
     padding: 15px;
+} 
+
+#nav-ferramentas ul{
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#nav-ferramentas li{
+    display: flex;
+    justify-content: left;
+}
+
+#nav-ferramentas a{
+    text-decoration: none;
+    color: #212529;
+}
+
+    /* Estilos específicos para telas >MD */
+    @media (max-width: 991.98px){
+        #nav-ferramentas li{
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        #nav-ferramentas li{
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+/* Estilos botões */
+.btn-primary{
+    border-radius: 24px !important;
+    background-color: #272C30 !important;
+    color: #FFFFFF !important;
+    border: solid 2px #272C30 !important;
+}
+
+.btn-primary:hover{
+    border-radius: 24px !important;
+    background-color: #FFFFFF !important;
+    color: #272727 !important;
+    border: solid 2px #272C30 !important;
 }
 
 /* Estilos Feed */
@@ -55,7 +98,7 @@ h1{
 }
 
 h2{
-    font-size: 1.602rem !important;
+    font-size: 1.302rem !important;
 }
 
 h3{
@@ -68,4 +111,8 @@ p{
 
 small{
     font-size: 0.889rem !important;
+}
+
+span{
+    font-size: 1.202rem;
 }

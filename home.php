@@ -20,7 +20,9 @@
         <!-- Bootstrap 5 CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <!--Bootstrap 5 JS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <!--FONTAWESOME JS-->
+        <script src="https://kit.fontawesome.com/6afdaad939.js" crossorigin="anonymous">      </script>
         <!-- Fontes Google -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,6 +35,33 @@
                     <aside id="ferramentas" class="col-2 col-lg-3">
                         <header>
                             <h1 class="ubuntu-bold d-none d-lg-block">Ferramentas</h1>
+
+                            <nav id="nav-ferramentas">
+                                <ul>
+                                    <li>
+                                        <a class="my-2" href="home.php"><i class="fa-solid fa-house fa-xl px-2" style="color: #272727;"></i><h2 class="ubuntu-regular d-none d-lg-inline-block"> Home</h2></a>
+                                    </li> 
+                                    <li>
+                                        <a class="d-lg-none my-2" href="#pesquisa"><i class="fa-solid fa-magnifying-glass fa-xl" style="color: #1e3050;"></i></a>
+                                    </li>
+                                    <li>
+                                        <a class="my-2" href="perfil.php"><i class="fa-regular fa-user fa-xl px-2" style="color: #272727;"></i><h2 class="ubuntu-regular d-none d-lg-inline-block"> Perfil</h2></a>
+                                    </li>
+                                    <li>
+                                        <a class="d-lg-none my-2" href="#nova-postagem"><i class="fa-solid fa-plus fa-xl" style="color: #272727;"></i></a>
+                                    </li>
+                                    <li>
+                                        <a class="my-2" href="logout.php"><i class="fa-solid fa-arrow-right-from-bracket fa-xl px-2" style="color: #272727;"></i><h2 class="ubuntu-regular d-none d-lg-inline-block"> Sair</h2></a>
+                                    </li>
+                                    <li>
+                                        <a class="d-none d-lg-block mt-3 mb-2 btn btn-primary w-100" href="#nova-postagem"><span class="d-none d-lg-block ubuntu-bold d-none d-lg-inline-block">Postar</span></a>
+                                    </li>
+                                    <li>
+                                        <a class="d-none d-lg-block mb-2 btn btn-primary w-100" href="#pesquisa"><span class="d-none d-lg-block ubuntu-bold d-none d-lg-inline-block">Explorar</span></a>
+                                    </li>
+                                    exibir aqui avatar/nome/link para perfil do usuário logado
+                                </ul>
+                            </nav>
                         </header>
                     </aside>
                     <section id="feed" class="col-10 col-lg-6">
