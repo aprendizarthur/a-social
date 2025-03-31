@@ -1,4 +1,8 @@
 /* Estilos HTML Tags Globais */
+html{
+    scroll-behavior: smooth;
+}
+
 body{
     overflow: hidden;
 }
@@ -22,6 +26,8 @@ body{
 }
 
 #nav-ferramentas a{
+    display: flex;
+    align-items: baseline;
     text-decoration: none;
     color: #212529;
 }
@@ -29,13 +35,17 @@ body{
     /* Estilos específicos para telas >MD */
     @media (max-width: 991.98px){
         #nav-ferramentas li{
-            margin-top: 20px;
-            margin-bottom: 20px;
+            margin-top: 35px;
+            margin-bottom: 35px;
         }
 
         #nav-ferramentas li{
             display: flex;
             justify-content: center;
+        }
+
+        #logo{
+            margin-bottom: 15px;
         }
     }
 

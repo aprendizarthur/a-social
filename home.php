@@ -34,10 +34,12 @@
                 <div class="row d-flex mt-2">
                     <aside id="ferramentas" class="col-2 col-lg-3">
                         <header>
-                            <h1 class="ubuntu-bold d-none d-lg-block">Ferramentas</h1>
-
                             <nav id="nav-ferramentas">
                                 <ul>
+                                    <li class="d-none d-lg-block ">
+                                        <a id="logo" class="mt-2" href="index.php"><i class="fa-solid fa-comments fa-xl px-2" style="color: #272727;"></i><h1 class="d-none d-lg-inline ubuntu-bold">aSocial</h1></a>
+                                    </li>
+                                    <hr class="d-none d-lg-block">
                                     <li>
                                         <a class="my-2" href="home.php"><i class="fa-solid fa-house fa-xl px-2" style="color: #272727;"></i><h2 class="ubuntu-regular d-none d-lg-inline-block"> Home</h2></a>
                                     </li> 
@@ -59,7 +61,6 @@
                                     <li>
                                         <a class="d-none d-lg-block mb-2 btn btn-primary w-100" href="#pesquisa"><span class="d-none d-lg-block ubuntu-bold d-none d-lg-inline-block">Explorar</span></a>
                                     </li>
-                                    exibir aqui avatar/nome/link para perfil do usuário logado
                                 </ul>
                             </nav>
                         </header>
