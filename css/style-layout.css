@@ -67,9 +67,7 @@ body{
 /* Estilos Feed */
 #feed{
     background-color: #FFFFFF;
-    border-top: solid 1px #e3e7e9;
-    border-bottom: solid 1px #e3e7e9;
-    border-right: solid 1px #e3e7e9;
+    border: solid 1px #e3e7e9;
     overflow-y: auto;  
     height: 100vh;
     padding: 15px;
@@ -108,7 +106,7 @@ h1{
 }
 
 h2{
-    font-size: 1.302rem !important;
+    font-size: 1.150rem !important;
 }
 
 h3{
@@ -124,5 +122,5 @@ small{
 }
 
 span{
-    font-size: 1.202rem;
+    font-size: 1rem;
 }

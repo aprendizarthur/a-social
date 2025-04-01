@@ -1,0 +1,30 @@
+/* Estilos para formulários login e registro */
+
+#alerta-erros:empty{
+    display: none;
+}
+
+#alerta-erros{
+    background-color: #f5918a;
+    border-radius: 5px;
+}
+
+input[type="date"]{
+    color: #656668;
+}
+
+.sucesso{
+    color: #cafae4;
+}
+
+.erro{
+    color: #f06359;
+}
+
+a{
+    text-decoration: none !important;
+}
+
+.form-group{
+    margin-bottom: 25px;
+}
