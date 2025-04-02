@@ -39,9 +39,10 @@ include 'functions/acesso.php';
                         <?php barraFerramentas(); ?>
                     </aside>
                     <section id="feed" class="col-10 col-lg-6">
-                        <header>
-                            <h1 class="ubuntu-bold d-noned-lg-block">Feed</h1>
+                        <header id="#nova-postagem">
+                            Form Criar postagem
                         </header>
+
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
@@ -80,9 +81,9 @@ include 'functions/acesso.php';
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
                     </section>
-                    <aside id="pesquisa" class="d-none d-lg-block col-lg-3">
+                    <aside id="explorar" class="d-none d-lg-block col-lg-3">
                         <header>
-                            <h1 class="ubuntu-bold d-none d-lg-block">Pesquisa</h1>
+                            <h1 class="ubuntu-bold d-none d-lg-block">Explorar</h1>
                         </header>
                     </aside>       
                 </div>

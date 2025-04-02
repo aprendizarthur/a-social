@@ -34,11 +34,13 @@ include 'conn.php';
                 registroDB($mysqli, $nome, $email, $senha, $nascimento);
         
                 //pegando id do usuário no DB e passando para a sessão
-                $sql_code = "SELECT id AS IDusuario FROM usuarios WHERE email = '$email' AND nome = '$nome'";
+                $sql_code = "SELECT id, nome, avatar FROM usuarios WHERE email = '$email' AND nome = '$nome'";
                 
                 if($query = $mysqli->query($sql_code)){
                     $dados = $query->fetch_assoc();
-                    $_SESSION['id_usuario'] = $dados['IDusuario'];
+                    $_SESSION['id_usuario'] = $dados['id'];
+                    $_SESSION['nome_usuario'] = $dados['nome'];
+                    $_SESSION['avatar_usuario'] = $dados['avatar'];
                 } else {
                     header("Location: paginas-erro/erro-conexao.php");
                 }
@@ -156,11 +158,13 @@ include 'conn.php';
             //senão tiver nenhum erro
             if($erros2['email'] === "" && $erros2['senha'] === ""){
                 //pegando id usuário do DB e passando para a sessão
-                $sql_code = "SELECT id AS IDusuario FROM usuarios WHERE email = '$email'";
+                $sql_code = "SELECT id, avatar, nome FROM usuarios WHERE email = '$email'";
                 
                 if($query = $mysqli->query($sql_code)){
                     $dados = $query->fetch_assoc();
-                    $_SESSION['id_usuario'] = $dados['IDusuario'];
+                    $_SESSION['id_usuario'] = $dados['id'];
+                    $_SESSION['nome_usuario'] = $dados['nome'];
+                    $_SESSION['avatar_usuario'] = $dados['avatar'];
                 } else {
                     header("Location: paginas-erro/erro-conexao.php");
                 }
