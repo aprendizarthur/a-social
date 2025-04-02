@@ -90,6 +90,48 @@ body{
     padding: 15px;
 }
 
+#perfil-usuario{
+    position: relative;
+    bottom: 30px;
+}
+
+#dados-perfil{
+    position: relative;
+    bottom: 15px;
+}
+
+.capa-perfil{
+    height: 20vh !important;
+    width: 100%;
+    position: relative;
+    top: 30px;
+}
+
+.avatar-perfil{
+    border: solid 5px #FFFFFF;
+    width: 100px; 
+    height: 100px;
+    border-radius: 50%;
+    position: relative;
+    bottom: 10px;
+    left: 10px;
+}
+
+.voltar-perfil{
+    background-color: #272727;
+    border: solid 1px #272727;
+    border-radius: 50%;
+}
+
+.voltar-perfil:hover{
+    background-color: #FFFFFF;
+    border-radius: 50%;
+}
+
+.voltar-perfil i:hover{
+    color: #272727 !important;
+}
+
 /* Estilos Pesquisa */
 #explorar{
     background-color: #FFFFFF;
@@ -126,8 +168,24 @@ h1{
     font-size: 1.150rem !important;
 }
 
+#feed h2{
+    font-size: 1.100rem !important;
+}
+
+#feed h3{
+    font-size: 1rem !important;
+}
+
 #explorar h1{
     font-size: 1.150rem !important;
+}
+
+#explorar h2{
+    font-size: 1.100rem !important;
+}
+
+#explorar h3{
+    font-size: 1rem !important;
 }
 
 h2{
@@ -139,6 +197,10 @@ h3{
 }
 
 p{
+    font-size: 1rem !important;
+}
+
+blockquote{
     font-size: 1rem !important;
 }
 

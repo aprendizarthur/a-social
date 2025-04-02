@@ -44,33 +44,33 @@ registro($mysqli);
 
                         <form method="POST" class="mt-3">
                             <div class="form-group">
-                                <input value="<?php if (!empty($_SESSION['dados']['nome'])){echo htmlspecialchars($_SESSION['dados']['nome']);} ?>" required type="text" class="form-control" id="nome" name="nome" placeholder="Nome (4-20 caracteres)">
-                                <?php if (!empty($_SESSION['erros']['nome'])): ?>
-                                    <p class="erro"><?php echo htmlspecialchars($_SESSION['erros']['nome']); ?></p>
+                                <input value="<?php if (!empty($_SESSION['dadosRegistro']['nome'])){echo htmlspecialchars($_SESSION['dadosRegistro']['nome']);} ?>" required type="text" class="form-control" id="nome" name="nome" placeholder="Nome (4-20 caracteres)">
+                                <?php if (!empty($_SESSION['errosRegistro']['nome'])): ?>
+                                    <p class="erro"><?php echo htmlspecialchars($_SESSION['errosRegistro']['nome']); ?></p>
                                 <?php endif; ?>
                             </div>
                             <div class="form-group">
-                                <input value="<?php if (!empty($_SESSION['dados']['email'])){echo htmlspecialchars($_SESSION['dados']['email']);} ?>" required type="email" class="form-control" id="email" name="email" placeholder="E-mail">
-                                <?php if (!empty($_SESSION['erros']['email'])): ?>
-                                    <p class="erro"><?php echo htmlspecialchars($_SESSION['erros']['email']); ?></p>
+                                <input value="<?php if (!empty($_SESSION['dadosRegistro']['email'])){echo htmlspecialchars($_SESSION['dadosRegistro']['email']);} ?>" required type="email" class="form-control" id="email" name="email" placeholder="E-mail">
+                                <?php if (!empty($_SESSION['errosRegistro']['email'])): ?>
+                                    <p class="erro"><?php echo htmlspecialchars($_SESSION['errosRegistro']['email']); ?></p>
                                 <?php endif; ?>
                             </div>
                             <div class="form-group">
                                 <input required type="password" class="form-control" id="senha" name="senha" placeholder="Senha">
-                                <?php if (!empty($_SESSION['erros']['senha'])): ?>
-                                    <p class="erro"><?php echo htmlspecialchars($_SESSION['erros']['senha']); ?></p>
+                                <?php if (!empty($_SESSION['errosRegistro']['senha'])): ?>
+                                    <p class="erro"><?php echo htmlspecialchars($_SESSION['errosRegistro']['senha']); ?></p>
                                 <?php endif; ?>
                             </div>
                             <div class="form-group">
                                 <input required type="password" class="form-control" id="senhaConfirmacao" name="senhaConfirmacao" placeholder="Confirmar Senha">
-                                <?php if (!empty($_SESSION['erros']['senha'])): ?>
-                                    <p class="erro"><?php echo htmlspecialchars($_SESSION['erros']['senha']); ?></p>
+                                <?php if (!empty($_SESSION['errosRegistro']['senha'])): ?>
+                                    <p class="erro"><?php echo htmlspecialchars($_SESSION['errosRegistro']['senha']); ?></p>
                                 <?php endif; ?>
                             </div>
                             <div class="form-group">            
-                                <input value="<?php if(!empty($_SESSION['dados']['nascimento'])){echo htmlspecialchars($_SESSION['dados']['nascimento']);} ?>" required type="date" class="form-control ubuntu-light" id="nascimento" name="nascimento" placeholder="Confirmar Senha">
-                                <?php if (!empty($_SESSION['erros']['nascimento'])): ?>
-                                    <p class="erro"><?php echo htmlspecialchars($_SESSION['erros']['nascimento']); ?></p>
+                                <input value="<?php if(!empty($_SESSION['dadosRegistro']['nascimento'])){echo htmlspecialchars($_SESSION['dadosRegistro']['nascimento']);} ?>" required type="date" class="form-control ubuntu-light" id="nascimento" name="nascimento" placeholder="Confirmar Senha">
+                                <?php if (!empty($_SESSION['errosRegistro']['nascimento'])): ?>
+                                    <p class="erro"><?php echo htmlspecialchars($_SESSION['errosRegistro']['nascimento']); ?></p>
                                 <?php endif; ?>
                                 <small id="small-nascimento" class="ubuntu-light">Isso não será exibido publicamente. Confirme sua própria idade, mesmo se esta conta for de empresa, de um animal de estimação ou outros.</small>
                             </div>
@@ -79,7 +79,7 @@ registro($mysqli);
                         </form>
 
                         <footer class="mt-3 text-left">
-                            <span class="ubuntu-light">Já possui uma conta? <a href="registro.php"> Faça login</a></span>
+                            <span class="ubuntu-light">Já possui uma conta? <a href="login.php"> Faça login</a></span>
                         </footer>
                     </section>     
                 </div>

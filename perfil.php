@@ -1,7 +1,11 @@
 <?php 
 session_start();
 include 'functions/ui-padrao.php';
+include 'functions/sessions.php';
 include 'functions/acesso.php';
+
+//função que verifica o ID enviado pelo GET e se ele existe no DB
+verificarIDGET($mysqli);
 ?>
 
 <!DOCTYPE html>
@@ -39,11 +43,9 @@ include 'functions/acesso.php';
                         <?php barraFerramentas(); ?>
                     </aside>
                     <section id="feed" class="col-10 col-lg-6">
-                        <header>
-                            <h1 class="ubuntu-bold d-noned-lg-block">Perfil</h1>
-                        </header>
+                        <!--FUNÇÃO PHP QUE REALIZA CONSULTA, INJETA O PERFIL DO USUÁRIO E OS POSTS DELE-->
+                        <?php exibirPerfil($mysqli);?>
 
-                            aa
                     </section>
                     <aside id="explorar" class="d-none d-lg-block col-lg-3">
                         <header>
