@@ -45,9 +45,15 @@ login($mysqli);
                         <form method="POST" class="mt-3">
                             <div class="form-group">
                                 <input  required type="email" class="form-control" id="email" name="email" placeholder="E-mail">
+                                <?php if (!empty($_SESSION['erros']['email'])): ?>
+                                    <p class="erro"><?php echo htmlspecialchars($_SESSION['erros']['email']); ?></p>
+                                <?php endif; ?>
                             </div>
                             <div class="form-group">
                                 <input required type="password" class="form-control" id="senha" name="senha" placeholder="Senha">
+                                <?php if (!empty($_SESSION['erros']['senha'])): ?>
+                                    <p class="erro"><?php echo htmlspecialchars($_SESSION['erros']['senha']); ?></p>
+                                <?php endif; ?>
                             </div>
                             <button class="btn btn-primary w-100" name="submit" type="submit"><span class="ubuntu-bold">Entrar</span></button>
                         </form>

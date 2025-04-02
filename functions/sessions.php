@@ -15,6 +15,8 @@ include 'conn.php';
             //variável que vai abrigar as mensagens dos possíveis erros
             $erros = [];
 
+            $erros['nome'] = verificaNome($mysqli, $nome);
+
             //verificando se o e-mail já existe no banco de dados
             $erros['email'] = verificaEmail($mysqli, $email);
 
@@ -24,7 +26,7 @@ include 'conn.php';
             //verificando se o usuário é maior de 18 anos
             $erros['nascimento'] = verificaMaioridade($mysqli, $nascimento);
 
-            if($erros['email'] === "" && $erros['senha'] === "" && $erros['nascimento'] === ""){
+            if($erros['nome'] === "" && $erros['email'] === "" && $erros['senha'] === "" && $erros['nascimento'] === ""){
                 //criptografando a senha
                 $senha = password_hash($senha, PASSWORD_DEFAULT);
                 
@@ -46,6 +48,7 @@ include 'conn.php';
             }else{
                 //adicionando mensagens de erro na session
                 $_SESSION['erros'] = [
+                        'nome' => ($erros['nome'] ?? ''),
                         'email' => ($erros['email'] ?? ''),
                         'senha' => ($erros['senha'] ?? ''),
                         'nascimento' => ($erros['nascimento'] ?? '')
@@ -65,6 +68,22 @@ include 'conn.php';
     }
 
     //FUNÇÕES SECUNDÁRIAS CHAMADAS NA PRINCIPAL DE REGISTRO
+        function verificaNome($mysqli, $nome){
+            $nome = $mysqli->real_escape_string($nome);
+            $tamanhoNome = strlen($nome);
+
+            if($tamanhoNome < 3){
+                return "Nome muito curto.";
+            }
+            if($tamanhoNome >= 3 && $tamanhoNome <= 20){
+                return "";
+            }
+            if($tamanhoNome > 20){
+                return "Nome muito grande.";
+            }
+            
+        }
+    
         function verificaEmail($mysqli, $email){
             $email = $mysqli->real_escape_string($email);
 
@@ -116,6 +135,7 @@ include 'conn.php';
                 header("Location: paginas-erro/erro-conexao.php");
             }
         }
+
     //FUNCAO DE LOGIN - CHAMANDO OUTRAS FUNCOES PARA COMPACTAR O CÓDIGO
     function login($mysqli){
         if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])){
@@ -148,7 +168,14 @@ include 'conn.php';
                 //redirecionando para a home
                 header("Location: home.php");
             } else {
-                //adicionar dados dos erros na session para exibir ao usuário
+                //adicionando mensagens de erro na session
+                $_SESSION['erros'] = [
+                    'email' => ($erros2['email'] ?? ''),
+                    'senha' => ($erros2['senha'] ?? '')
+                ];
+            
+                //recarregando a página
+                header("Location: login.php");
             }
         }
     }
@@ -190,5 +217,4 @@ include 'conn.php';
                     header("Location: paginas-erro/erro-conexao.php");
                 }
             }
-
 ?>
