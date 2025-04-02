@@ -43,7 +43,7 @@ session_start();
                             Parece que não conseguimos nos conectar ao servidor no momento. Isso pode ser devido a um problema na sua conexão com a internet ou a uma falha temporária em nossos sistemas.
                             </p>
                         
-                            <a class="mt-3 mb-2 btn btn-primary w-100" href="../logout.php"><span class="ubuntu-bold">Voltar</span></a>
+                            <a class="mt-3 mb-2 btn btn-primary w-100" href="../login.php"><span class="ubuntu-bold">Voltar</span></a>
                         <footer class="mt-3 text-left">
                             <small class="ubuntu-light">Se o problema persistir, tente novamente mais tarde.</small>
                         </footer>

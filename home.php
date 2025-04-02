@@ -1,7 +1,9 @@
 <?php 
 session_start();
 include 'functions/ui-padrao.php';
-include 'functions/acesso.php';
+include 'functions/acesso-redirecionar.php';
+//função que controla acesso apenas para usuários logados
+acessoLogado();
 ?>
 
 <!DOCTYPE html>

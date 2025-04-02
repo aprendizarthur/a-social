@@ -40,7 +40,7 @@ session_start();
                             </hgroup>
                         </header>
                             <p class="ubuntu-light">
-                            Desculpe, mas parece que você não possui as credenciais necessárias para visualizar este conteúdo. Isso pode acontecer se:
+                                Desculpe, mas parece que você não possui as credenciais necessárias para visualizar este conteúdo. Isso pode acontecer se:
                             </p>
 
                             <ul class="ubuntu-light">
@@ -48,7 +48,7 @@ session_start();
                                 <li>Esta área é restrita a determinados usuários ou administradores.</li>
                             </ul>
                         
-                            <a class="mt-3 mb-2 btn btn-primary w-100" href="../logout.php"><span class="ubuntu-bold">Voltar</span></a>
+                            <a class="mt-3 mb-2 btn btn-primary w-100" href="../login.php"><span class="ubuntu-bold">Voltar</span></a>
                         <footer class="mt-3 text-left">
                             <small class="ubuntu-light">Agradecemos pela compreensão!</small>
                         </footer>

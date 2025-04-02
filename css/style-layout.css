@@ -81,6 +81,20 @@ body{
     border: solid 2px #272C30 !important;
 }
 
+.btn-secondary{
+    border-radius: 24px !important;
+    background-color: #24A4F2 !important;
+    color: #FFFFFF !important;
+    border: solid 2px #24A4F2 !important;
+}
+
+.btn-secondary:hover{
+    border-radius: 24px !important;
+    background-color: #FFFFFF !important;
+    color: #24A4F2 !important;
+    border: solid 2px #24A4F2 !important;
+}
+
 /* Estilos Feed */
 #feed{
     background-color: #FFFFFF;

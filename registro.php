@@ -1,7 +1,9 @@
 <?php 
 session_start();
-include 'functions/redirecionar.php';
+include 'functions/acesso-redirecionar.php';
 include 'functions/sessions.php';
+//função que redireciona usuários logados
+redirecionarLogado();
 //função que faz o registro
 registro($mysqli);
 ?>

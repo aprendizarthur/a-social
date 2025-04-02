@@ -2,8 +2,9 @@
 session_start();
 include 'functions/ui-padrao.php';
 include 'functions/sessions.php';
-include 'functions/acesso.php';
-
+include 'functions/acesso-redirecionar.php';
+//função que controla acesso apenas para usuários logados
+acessoLogado();
 //função que verifica o ID enviado pelo GET e se ele existe no DB
 verificarIDGET($mysqli);
 ?>
@@ -45,7 +46,6 @@ verificarIDGET($mysqli);
                     <section id="feed" class="col-10 col-lg-6">
                         <!--FUNÇÃO PHP QUE REALIZA CONSULTA, INJETA O PERFIL DO USUÁRIO E OS POSTS DELE-->
                         <?php exibirPerfil($mysqli);?>
-
                     </section>
                     <aside id="explorar" class="d-none d-lg-block col-lg-3">
                         <header>
