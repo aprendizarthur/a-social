@@ -49,6 +49,7 @@ body{
     align-items: baseline;
 }
 
+
     /* Estilos específicos para telas >MD */
     @media (max-width: 991.98px){
         #nav-ferramentas li{
@@ -102,6 +103,32 @@ body{
     overflow-y: auto;  
     height: 100vh;
     padding: 15px;
+}
+
+#feedback-usuario{
+    margin: 0;
+    padding: 0;
+    background-color: #24A4F2;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#form-nova-postagem{
+    border: solid 1px #e3e7e9;
+}
+
+textarea{
+    resize: none !important;
+}
+
+#nova-potagem{
+    transition: all 0.3s ease;
+}
+
+#nova-postagem:target{
+    border: solid 1px #24A4F2;
 }
 
 #perfil-usuario{
@@ -220,6 +247,10 @@ blockquote{
 
 small{
     font-size: 0.889rem !important;
+}
+
+#bem-pequeno{
+    font-size: 0.7rem !important;
 }
 
 span{

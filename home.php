@@ -1,9 +1,13 @@
 <?php 
 session_start();
+include 'functions/feed.php';
 include 'functions/ui-padrao.php';
+include 'functions/sessions.php';
 include 'functions/acesso-redirecionar.php';
 //função que controla acesso apenas para usuários logados
 acessoLogado();
+//função que recebe dados do form de nova postagem e adiciona no db
+adicionaPostagemDB($mysqli);
 ?>
 
 <!DOCTYPE html>
@@ -41,47 +45,23 @@ acessoLogado();
                         <?php barraFerramentas(); ?>
                     </aside>
                     <section id="feed" class="col-10 col-lg-6">
-                        <header id="#nova-postagem">
-                            Form Criar postagem
-                        </header>
 
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit et culpa, illo commodi consequuntur eos. Dicta, ipsa eos? Doloremque, tenetur! Sint eveniet consequatur illum expedita. Facere nemo pariatur hic vel!
+                    <!--FEEDBACK USUÁRIO-->
+                        <!--FUNÇÃO QUE MOSTRA FEEDBACKS DO SISTEMA-->
+                        <section id="feedback-usuario" class=" text-center p-2 m-0">
+                            <?php feedbackSistema(); ?>
+                        </section>
+
+                        <!--SCRIPT JS QUE FAZ A BARRA DE FEEDBACK SUMIR APÓS 3s-->
+                        <script src="functions/barra-feedback.js"></script>
+
+                    <!--ENVIAR NOVA POSTAGEM-->
+                        <!--FUNÇÃO PHP QUE INJETA O FORM PARA NOVA POSTAGEM-->
+                        <?php novaPostagem(); ?>
+
+                    <!--FEED-->
+
+                            
                     </section>
                     <aside id="explorar" class="d-none d-lg-block col-lg-3">
                         <header>

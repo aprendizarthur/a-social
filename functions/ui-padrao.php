@@ -30,7 +30,7 @@ function barraFerramentas(){
                     <a class="my-2" href="logout.php"><i class="fa-solid fa-arrow-right-from-bracket fa-lg px-2" style="color: #272727;"></i><h2 class="ubuntu-regular d-none d-lg-inline-block"> Sair</h2></a>
                 </li>
                 <li>
-                    <a class="d-none d-lg-block mt-3 mb-2 btn btn-secondary w-100" href="home.php#nova-postagem"><span class="d-none d-lg-block ubuntu-bold d-none d-lg-inline-block">Postar</span></a>
+                    <a class="d-none d-lg-block mt-3 mb-2 btn btn-primary w-100" href="home.php#nova-postagem"><span class="d-none d-lg-block ubuntu-bold d-none d-lg-inline-block">Postar</span></a>
                 </li>
             </ul>
         </nav>

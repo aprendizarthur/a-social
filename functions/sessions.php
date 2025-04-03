@@ -1,6 +1,18 @@
 <?php 
 include 'conn.php';
-//ARQUIVO EXCLUSIVO PARA FUNÇÕES DE SESSÃO DE USUÁRIO / REGISTRO / LOGIN / EXIBIR PERFIL
+//ARQUIVO EXCLUSIVO PARA FUNÇÕES DE SESSÃO DE USUÁRIO / REGISTRO / LOGIN / EXIBIR PERFIL / FEEDBACKS SISTEMA
+
+    //FUNÇÃO QUE MOSTRA FEEDBACKS DO SISTEMA
+    function feedbackSistema(){
+        //se existem feedback apresenta ele pro usuário
+        if(!empty($_SESSION['feedback-sistema'])){
+            echo "<span class=\"ubuntu-regular\">" . $_SESSION['feedback-sistema'] . "</span>"; 
+            //limpando feedback após printar pro usuário
+            unset($_SESSION['feedback-sistema']);
+        } else {
+            echo "<span class=\"ubuntu-regular\"> Nenhuma mensagem do sistema </span>"; 
+        }
+    }
 
     //FUNÇÃO QUE VERIFICA SE O ID PASSADO PELO GET EXISTE NO DB
     function verificarIDGET($mysqli){
@@ -15,12 +27,12 @@ include 'conn.php';
                 header("Location: paginas-erro/erro-perfil-inexistente.php");
                 exit;
             }
-
         } else {
             header("Location: paginas-erro/erro-conexao.php");
             exit;
         }
     }
+
     //FUNCAO QUE COLETA DADOS DO USUÁRIO E EXIBE O PERFIL
     function exibirPerfil($mysqli){
         //usando GET para pegar id do usuário e imprimir o perfil
@@ -113,7 +125,7 @@ include 'conn.php';
                     header("Location: paginas-erro/erro-conexao.php");
                     exit;
                 }
-                
+
                 //encaminha para a home
                 header("Location: home.php");
                 exit;
@@ -154,7 +166,6 @@ include 'conn.php';
             if($tamanhoNome > 20){
                 return "Nome muito grande.";
             }
-            
         }
     
         function verificaEmail($mysqli, $email){
