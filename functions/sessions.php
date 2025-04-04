@@ -38,6 +38,18 @@ include 'conn.php';
         //usando GET para pegar id do usuário e imprimir o perfil
         $id = $mysqli->real_escape_string($_GET['id']);
 
+        //consultando o número de postagens do usuário
+        $sql_code = "SELECT COUNT(*) AS total FROM postagens WHERE id_autor = '$id'";
+
+        if($query = $mysqli->query($sql_code)){
+            $dados = $query->fetch_assoc();
+            
+            $totalPostagens = $dados['total'];
+        } else {
+            header("Location: paginas-erros/erro-conexao.php");
+            exit;
+        }
+
         //consultando dados usuario
         $sql_code = "SELECT nome, fundoPerfil, avatar, biografia, registro FROM usuarios WHERE id = '$id'";
         
@@ -48,7 +60,7 @@ include 'conn.php';
                 <header class="mb-3 d-flex justify-content-between align-items-center">
                     <a class="d-inline me-1 voltar-perfil p-1" href="home.php"><i class="fa-solid px-1 fa-arrow-left fa-md" style="color: #FFFFFF;"></i></a>
                     <h1 class="ubuntu-bold d-inline m-0 p-0">Perfil de ' .$dados['nome'] . '</h1>
-                    <small class="ubuntu-light d-none d-md-inline"> 20 posts</small>
+                    <small class="ubuntu-light d-none d-md-inline">'. $totalPostagens .' posts</small>
                 </header>
 
                 <article id="perfil-usuario">
@@ -67,7 +79,7 @@ include 'conn.php';
                             </blockquote>
                     </section>
                     <footer>
-                        <small class="ubuntu-light"><i class="fa-solid fa-calendar-days fa-sm me-1" style="color: #979797;"></i> Ingressou '. $dados['registro'] .'</small>
+                        <small class="ubuntu-light"><i class="fa-solid fa-calendar-days fa-sm me-1" style="color: #979797;"></i> Ingressou em '. $dados['registro'] .'</small>
                         <hgroup class="mt-1">
                             <h3 class="ubuntu-bold d-inline-block">0</h3><small class="ubuntu-light me-2"> Seguindo</small>
                             <h3 class="ubuntu-bold d-inline-block">0</h3><small class="ubuntu-light"> Seguidores</small>    

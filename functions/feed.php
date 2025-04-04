@@ -52,4 +52,48 @@ include 'conn.php';
             }
         }
     }
+
+    //FUNÇÃO QUE MOSTRA TODOS OS POSTS DO USUÁRIO NO PERFIL
+    function postsUsuario($mysqli){
+        $id = $mysqli->real_escape_string($_GET['id']);
+
+        $sql_code = "SELECT id, id_autor, nome, avatar, texto, data_publicacao FROM postagens WHERE id_autor = '$id'";
+       
+        if($query = $mysqli->query($sql_code)){
+            while($dados = $query->fetch_assoc()){
+                $idPostagem = $dados['id'];
+                $textoPostagem = $dados['texto'];
+                $dataPostagem = $dados['data_publicacao'];
+                $idAutor = $dados['id_autor'];
+                $nomeAutor = $dados['nome'];
+                $avatarAutor = $dados['avatar'];
+
+                echo '
+                    <article class="post p-3">
+                        <a class="link-post" href="post.php?id='.$idPostagem .'">
+                            <header>
+                                <section class="d-flex align-items-center">
+                                        <figure>
+                                            <img class="border avatar-perfil-postagem "src="'. $avatarAutor .'" alt="Avatar do usuário">
+                                        </figure>
+                                        <h3 class="ubuntu-bold">'. $nomeAutor .'</h3>                                        
+                                </section>
+                            </header>
+                            <section>
+                                <p class="ubuntu-regular">
+                                    '. $textoPostagem .'
+                                </p>
+                            </section>
+                            <footer class="d-flex justify-content-between">
+                                <small class="ubuntu-light">'. $dataPostagem .'</small>
+                            </footer> 
+                        </a>
+                    </article>
+                ';
+            }
+        } else {
+            header("Location: paginas-erro/erro-conexao.php");
+            exit;
+        }
+    }
 ?>

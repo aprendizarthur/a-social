@@ -2,6 +2,7 @@
 session_start();
 include 'functions/ui-padrao.php';
 include 'functions/sessions.php';
+include 'functions/feed.php';
 include 'functions/acesso-redirecionar.php';
 //função que controla acesso apenas para usuários logados
 acessoLogado();
@@ -45,7 +46,17 @@ verificarIDGET($mysqli);
                     </aside>
                     <section id="feed" class="col-10 col-lg-6">
                         <!--FUNÇÃO PHP QUE REALIZA CONSULTA, INJETA O PERFIL DO USUÁRIO E OS POSTS DELE-->
-                        <?php exibirPerfil($mysqli);?>
+                        <?php exibirPerfil($mysqli); ?>
+
+                        <!--FUNÇÃO PHP QUE EXIBE OS POSTS DO USUÁRIO-->
+                        <div id="postagens-perfil">
+                            <h2 class="ubuntu-bold">Posts</h2>
+                            <?php postsUsuario($mysqli); ?>
+                            <small class="ubuntu-light">
+                                Até o final do perfil? Você é mais curioso que detetive de série!
+                            </small>   
+                        </div>
+
                     </section>
                     <aside id="explorar" class="d-none d-lg-block col-lg-3">
                         <header>
