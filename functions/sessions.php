@@ -35,7 +35,7 @@ include 'conn.php';
 
     //FUNÇÃO QUE VERIFICA SE O ID DE POST PASSADO PELO GET EXISTE NO DB
     function verificarIDpost($mysqli){
-        $id = $mysqli->real_escape_string($_GET['id']);
+        $id = $mysqli->real_escape_string($_GET['id-post']);
 
         $sql_code = "SELECT COUNT(*) AS total FROM postagens WHERE id = '$id'";
 

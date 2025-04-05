@@ -8,6 +8,8 @@ include 'functions/acesso-redirecionar.php';
 acessoLogado();
 //função que verifica o ID do post enviado pelo GET e se ele existe no DB
 verificarIDpost($mysqli); 
+//função que adiciona visualizacao no post
+visualizacaoPOST($mysqli);
 ?>
 
 <!DOCTYPE html>
