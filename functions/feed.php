@@ -24,7 +24,58 @@ include 'conn.php';
         ';
     }
 
-    //FUNÇÃO QUE RECEBE OS DADOS DO FORMULÁRIO E ADICIONA A POSTAGEM AO DB
+    //FUNÇÃO QUE EXIBE O FORMULÁRIO PARA NOVO COMENTÁRIO
+    function novoComentario(){
+        echo '
+            <section>
+                <div class="row d-flex p-2 justify-content-between">
+                    <div id="form-novo-comentario" class="col-12 p-2 m-0">
+                        <form method="POST" id="comentar">
+                            <div class="form-group">
+                                <textarea required spellcheck="true" class="ubuntu-regular w-100 form-control mb-2" rows="3" maxlength="150" minlength="1" id="texto-comentario" name="texto-comentario" placeholder="O que você quer responder?"></textarea>
+                                <div class="d-flex justify-content-between align-items-top">
+                                    <small id="bem-pequeno" class="ubuntu-light">Limite de 150 caracteres</small>
+                                    <button class="btn btn-primary w-20 ubuntu-bold" name="submit-novo-comentario">Comentar</button>
+                                    </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        ';
+    }
+
+    //FUNÇÃO QUE RECEBE OS DADOS DO FORMULÁRIO DE NOVO COMENTARIO E ADICIONA O COMENTARIO AO DB
+    function adicionaComentarioDB($mysqli){
+        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit-novo-comentario'])){
+            
+            $autorID = $mysqli->real_escape_string($_SESSION['id_usuario']);
+            $idPostagem = $mysqli->real_escape_string($_GET['id-post']);
+            $autorNome = $mysqli->real_escape_string($_SESSION['nome_usuario']);
+            $avatar = $mysqli->real_escape_string($_SESSION['avatar_usuario']);
+            $comentario = $mysqli->real_escape_string($_POST['texto-comentario']);
+
+            $sql_code = "INSERT INTO comentarios (id_autor, id_post, nome_autor, avatar_autor, comentario) VALUES ('$autorID','$idPostagem','$autorNome','$avatar','$comentario')";
+        
+            //variavel que vai abrigar a mensagem caso a postagem seja enviada ao DB
+            $feedbackSistema = "";
+
+            if($query = $mysqli->query($sql_code)){
+                $feedbackSistema = "Comentário enviado";
+
+                //enviando o feedback para a session
+                $_SESSION['feedback-sistema'] = $feedbackSistema;
+
+                header("Location: home.php");
+                exit;
+            } else {
+                header("Location: paginas-erro/erro-conexao.php");
+                exit;
+            }
+        }
+    }
+
+    //FUNÇÃO QUE RECEBE OS DADOS DO FORMULÁRIO DE NOVO POST E ADICIONA A POSTAGEM AO DB
     function adicionaPostagemDB($mysqli){
         if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit-nova-postagem'])){
             
@@ -53,18 +104,62 @@ include 'conn.php';
         }
     }
 
+    //FUNÇÃO QUE MOSTRAR OS TODOS COMENTÁRIOS DO POST NA SUA PRÓPRIA PÁGINA
+    function comentariosPost($mysqli){
+        $id = $mysqli->real_escape_string($_GET['id-post']);
+
+        $sql_code = "SELECT id_autor, nome_autor, avatar_autor, data_comentario, comentario FROM comentarios WHERE id_post = '$id' ORDER BY data_comentario DESC";
+
+        //exibindo título para sessão de comentários
+        echo '
+            <h1 class="ubuntu-bold mb-3">Comentários</h1>
+        ';
+
+        if($query = $mysqli->query($sql_code)){
+            while($dados = $query->fetch_assoc()){
+                $idAutor = $dados['id_autor'];
+                $nomeAutor = $dados['nome_autor'];
+                $avatarAutor = $dados['avatar_autor'];
+                $comentario = $dados['comentario'];
+                $dataComentario = $dados['data_comentario'];
+
+               echo '
+                    <blockquote class="post p-3">
+                            <header>
+                                <section class="d-flex align-items-center">
+                                        <figure>
+                                            <img class="border avatar-perfil-postagem "src="'. $avatarAutor .'" alt="Avatar do usuário">
+                                        </figure>
+                                        <h3 class="ubuntu-bold">'. $nomeAutor .'</h3>                                        
+                                </section>
+                            </header>
+                            <section>
+                                <p class="ubuntu-regular">
+                                    '. $comentario .'
+                                </p>
+                            </section>
+                            <footer class="d-flex justify-content-between">
+                                <small class="ubuntu-light">'. $dataComentario .'</small>
+                            </footer> 
+                    </blockquote>
+               ';
+            }
+        }
+    }
+
     //FUNÇÃO QUE MOSTRA TODOS OS POSTS DO USUÁRIO NO PERFIL
     function postsUsuario($mysqli){
         $id = $mysqli->real_escape_string($_GET['id']);
 
-        $sql_code = "SELECT id, id_autor, nome, avatar, texto, data_publicacao FROM postagens WHERE id_autor = '$id'";
+        $sql_code = "SELECT id, id_autor, nome, avatar, texto, data_publicacao FROM postagens WHERE id_autor = '$id' ORDER BY data_publicacao DESC";
        
         if($query = $mysqli->query($sql_code)){
             while($dados = $query->fetch_assoc()){
                 $idPostagem = $dados['id'];
                 $textoPostagem = $dados['texto'];
                 $dataPostagem = $dados['data_publicacao'];
-                $visualizacoesPostagem = totalVisuPOST($mysqli, $idPostagem);  
+                $visualizacoesPostagem = totalVisuPOST($mysqli, $idPostagem); 
+                $comentariosPostagem = totalComPOST($mysqli,  $idPostagem);  
                 $idAutor = $dados['id_autor'];
                 $nomeAutor = $dados['nome'];
                 $avatarAutor = $dados['avatar'];
@@ -87,6 +182,7 @@ include 'conn.php';
                             </section>
                             <footer class="d-flex justify-content-between">
                                 <small class="ubuntu-light">'. $dataPostagem .'</small>
+                                <span class="ubuntu-light"><i class="fa-solid fa-comment fa-md me-2" style="color: #979797;"></i>'.$comentariosPostagem.'</span>
                                 <span class="ubuntu-light"><i class="fa-solid fa-eye fa-md me-2" style="color: #979797;"></i>'.$visualizacoesPostagem.'</span>
                             </footer> 
                         </a>
@@ -110,7 +206,8 @@ include 'conn.php';
             $idPostagem = $dados['id'];
             $textoPostagem = $dados['texto'];
             $dataPostagem = $dados['data_publicacao'];
-            $visualizacoesPostagem = totalVisuPOST($mysqli, $idPostagem);  
+            $visualizacoesPostagem = totalVisuPOST($mysqli, $idPostagem); 
+            $comentariosPostagem = totalComPOST($mysqli,  $idPostagem); 
             $idAutor = $dados['id_autor'];
             $avatarAutor = $dados['avatar'];
             $nomeAutor = $dados['nome'];    
@@ -140,6 +237,7 @@ include 'conn.php';
                     </section>
                     <footer class="d-flex justify-content-between">
                         <small class="ubuntu-light">'. $dataPostagem .'</small>
+                        <span class="ubuntu-light"><i class="fa-solid fa-comment fa-md me-2" style="color: #979797;"></i>'.$comentariosPostagem.'</span>
                         <span class="ubuntu-light"><i class="fa-solid fa-eye fa-md me-2" style="color: #979797;"></i>'.$visualizacoesPostagem.'</span>
                     </footer> 
                 </article>
@@ -172,7 +270,32 @@ include 'conn.php';
             header("Location: paginas-erro/erro-conexao.php");
         }
     }
+        //FUNÇÃO SECUNDÁRIA QUE RETORNA O TOTAL DE COMENTARIOS DE UM POST
+        function totalComPOST($mysqli,  $idPostagem){
+            //se está na página de post, pega o id da postagem pelo get
+            if(!empty($_GET['id-post'])){
+                $id = $mysqli->real_escape_string($_GET['id-post']);
 
+                $sql_code = "SELECT COUNT(*) AS total FROM comentarios WHERE id_post = '$id'";
+
+                if($query = $mysqli->query($sql_code)){
+                    $dados = $query->fetch_assoc();
+                    
+                    return $dados['total'];
+                }
+            } else {
+                //se for em outra página sem o GET ID-POST (perfil, feed, ...) pega a variavel com o id, que a função de imprimir postagem passa
+                $id = $idPostagem;
+
+                $sql_code = "SELECT COUNT(*) AS total FROM comentarios WHERE id_post = '$idPostagem'";
+
+                if($query = $mysqli->query($sql_code)){
+                    $dados = $query->fetch_assoc();
+                    
+                    return $dados['total'];
+                }
+            }
+        }
         //FUNÇÃO SECUNDÁRIA QUE RETORNA O TOTAL DE VISUALIZACOES DE UM POST
         function totalVisuPOST($mysqli,  $idPostagem){
             //se está na página de post, pega o id da postagem pelo get

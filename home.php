@@ -48,7 +48,7 @@ adicionaPostagemDB($mysqli);
 
                     <!--FEEDBACK USUÁRIO-->
                         <!--FUNÇÃO QUE MOSTRA FEEDBACKS DO SISTEMA-->
-                        <section id="feedback-usuario" class=" text-center p-2 m-0">
+                        <section id="feedback-usuario" class="text-center p-2 mb-2">
                             <?php feedbackSistema(); ?>
                         </section>
 

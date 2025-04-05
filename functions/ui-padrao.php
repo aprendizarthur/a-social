@@ -15,10 +15,10 @@ function barraFerramentas(){
                     <a class="my-2" href="home.php"><i class="fa-solid fa-house fa-lg px-2" style="color: #272727;"></i><h2 class="ubuntu-regular d-none d-lg-inline-block"> Home</h2></a>
                 </li> 
                 <li class="d-none d-lg-block">
-                    <a class="my-2" href="home.php#pesquisa"><i class="fa-solid fa-magnifying-glass fa-lg fa-lg px-2" style="color: #272727;"></i><h2 class="ubuntu-regular d-none d-lg-inline-block"> Explorar</h2></a>
+                    <a class="my-2" href="explorar.php"><i class="fa-solid fa-magnifying-glass fa-lg fa-lg px-2" style="color: #272727;"></i><h2 class="ubuntu-regular d-none d-lg-inline-block"> Explorar</h2></a>
                 </li>
                 <li>
-                    <a class="d-lg-none my-2" href="home.php#pesquisa"><i class="fa-solid fa-magnifying-glass fa-lg" style="color: #272727;"></i></a>
+                    <a class="d-lg-none my-2" href="explorar.php"><i class="fa-solid fa-magnifying-glass fa-lg" style="color: #272727;"></i></a>
                 </li>
                 <li>
                     <a class="my-2" href="perfil.php?id=' . $_SESSION['id_usuario'] . '"><i class="fa-regular fa-user fa-xl px-2" style="color: #272727;"></i><h2 class="ubuntu-regular d-none d-lg-inline-block"> Perfil</h2></a>

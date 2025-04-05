@@ -10,6 +10,8 @@ acessoLogado();
 verificarIDpost($mysqli); 
 //função que adiciona visualizacao no post
 visualizacaoPOST($mysqli);
+//função que adiciona comentário ao post
+adicionaComentarioDB($mysqli);
 ?>
 
 <!DOCTYPE html>
@@ -47,8 +49,24 @@ visualizacaoPOST($mysqli);
                         <?php barraFerramentas(); ?>
                     </aside>
                     <section id="feed" class="col-10 col-lg-6">
+                        <!--FEEDBACK USUÁRIO-->
+                            <!--FUNÇÃO QUE MOSTRA FEEDBACKS DO SISTEMA-->
+                            <section id="feedback-usuario" class=" text-center p-2 mb-2">
+                                <?php feedbackSistema(); ?>
+                            </section>
+
+                            <!--SCRIPT JS QUE FAZ A BARRA DE FEEDBACK SUMIR APÓS 3s-->
+                            <script src="functions/barra-feedback.js"></script>
+
                         <!--FUNÇÃO PHP QUE MOSTRA O POST REFERENTE AO ID DO GET-->
                         <?php mostrarPost($mysqli);?>
+
+                        <!--FUNÇÃO PHP QUE INJETA FORM PARA NOVO COMENTARIO-->
+                        <?php novoComentario();?>
+
+                        <!--FUNÇÃO PHP QUE MOSTRA OS COMENTÁRIOS DA POSTAGEM-->
+                        <?php comentariosPost($mysqli);?>
+
                     </section>
                     <aside id="explorar" class="d-none d-lg-block col-lg-3">
                         <header>

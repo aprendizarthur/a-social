@@ -31,8 +31,42 @@ session_start();
     <body>
         <main>
             <div class="container">
-                
-                aaa
+                <div class="row d-flex justify-content-center mt-2">
+                    <section id="feed" class="col-11 col-lg-6">
+                    <header class="mb-3 d-flex justify-content-between align-items-center">
+                        <a class="d-inline me-1 voltar-perfil p-1" href="../home.php"><i class="fa-solid px-1 fa-arrow-left fa-md" style="color: #FFFFFF;"></i></a>
+                        <h1 class="ubuntu-bold d-inline m-0 p-0">Post Inexistente</h1>
+                        <small class="ubuntu-light d-none d-md-inline"> 0000-00-00</small>
+                    </header>
+
+                    <article class="post p-3">
+                        <header>
+                            <section class="d-flex align-items-center">
+                                <figure>
+                                    <img class="avatar-perfil-postagem" src="../images/avatars/default.webp" alt="Avatar do usuário">
+                                </figure>
+                                <h3 class="ubuntu-bold">Post Não Encontrado </h3>                                        
+                            </section>
+                        </header>
+                        <section class="mb-3">
+                            <blockquote class="ubuntu-regular">
+                                <p class="ubuntu-regular">
+                                    Possíveis motivos: 
+                                </p>    
+                                <ul> 
+                                    <li>O post pode ter sido excluído pelo autor.</li> 
+                                    <li>O link pode estar incorreto ou ter expirado.</li> 
+                                </ul>
+                            </blockquote>
+                            <a class="mt-3 mb-2 btn btn-primary w-100" href="../home.php"><span class="ubuntu-bold">Voltar</span></a>
+                        </section>
+                        <footer class="d-flex justify-content-between">
+                            <small class="ubuntu-light">0000-00-00</small>
+                            <span class="ubuntu-light"><i class="fa-solid fa-eye fa-md me-2" style="color: #979797;"></i>0</span>
+                        </footer> 
+                    </article>
+                    </section>     
+                </div>
             </div>  
         </main>
     </body>
