@@ -1,13 +1,5 @@
 <?php 
 session_start();
-include 'functions/ui-padrao.php';
-include 'functions/feed.php';
-include 'functions/sessions.php';
-include 'functions/acesso-redirecionar.php';
-//função que controla acesso apenas para usuários logados
-acessoLogado();
-//função que verifica o ID do post enviado pelo GET e se ele existe no DB
-verificarIDpost($mysqli); 
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +16,7 @@ verificarIDpost($mysqli);
         <meta name="description" content="">
         <meta name="theme-color" content="#FFFFFF">
         <!-- Link CSS -->
-        <link rel="stylesheet" href="css/style-layout.css">
+        <link rel="stylesheet" href="../css/style-layout.css">
         <!-- Bootstrap 5 CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <!--Bootstrap 5 JS -->
@@ -39,21 +31,8 @@ verificarIDpost($mysqli);
     <body>
         <main>
             <div class="container">
-                <div class="row d-flex mt-2">
-                    <aside id="ferramentas" class="col-2 col-lg-3">
-                        <!--FUNÇÃO PHP QUE INJETA A BARRA DE FERRAMENTAS-->
-                        <?php barraFerramentas(); ?>
-                    </aside>
-                    <section id="feed" class="col-10 col-lg-6">
-                        <!--FUNÇÃO PHP QUE MOSTRA O POST REFERENTE AO ID DO GET-->
-                        <?php mostrarPost($mysqli);?>
-                    </section>
-                    <aside id="explorar" class="d-none d-lg-block col-lg-3">
-                        <header>
-                            <h1 class="ubuntu-bold d-none d-lg-block">Explorar</h1>
-                        </header>
-                    </aside>       
-                </div>
+                
+                aaa
             </div>  
         </main>
     </body>

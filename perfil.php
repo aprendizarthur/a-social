@@ -6,8 +6,8 @@ include 'functions/feed.php';
 include 'functions/acesso-redirecionar.php';
 //função que controla acesso apenas para usuários logados
 acessoLogado();
-//função que verifica o ID enviado pelo GET e se ele existe no DB
-verificarIDGET($mysqli);
+//função que verifica o ID do perfil enviado pelo GET e se ele existe no DB
+verificarIDperfil($mysqli);
 ?>
 
 <!DOCTYPE html>

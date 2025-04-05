@@ -11,7 +11,7 @@ include 'conn.php';
                         <h1 class="ubuntu-bold mb-3">Nova postagem</h1>
                         <form method="POST">
                             <div class="form-group">
-                                <textarea required class="ubuntu-regular w-100 form-control mb-2" rows="3" maxlength="150" minlength="1" id="nova-postagem" name="texto-postagem" placeholder="O que está acontecendo?"></textarea>
+                                <textarea required spellcheck="true" class="ubuntu-regular w-100 form-control mb-2" rows="3" maxlength="150" minlength="1" id="nova-postagem" name="texto-postagem" placeholder="O que está acontecendo?"></textarea>
                                 <div class="d-flex justify-content-between align-items-top">
                                     <small id="bem-pequeno" class="ubuntu-light">Limite de 150 caracteres</small>
                                     <button class="btn btn-primary w-20 ubuntu-bold" name="submit-nova-postagem">Postar</button>
@@ -94,6 +94,52 @@ include 'conn.php';
         } else {
             header("Location: paginas-erro/erro-conexao.php");
             exit;
+        }
+    }
+
+    //FUNÇÃO QUE EXIBE O POST NA PÁGINA POST.PHP
+    function mostrarPost($mysqli){
+        $id = $mysqli->real_escape_string($_GET['id']);
+
+        $sql_code = "SELECT * FROM postagens WHERE id = '$id'";
+
+        if($query = $mysqli->query($sql_code)){
+            $dados = $query->fetch_assoc();  
+            $idPostagem = $dados['id'];
+            $textoPostagem = $dados['texto'];
+            $dataPostagem = $dados['data_publicacao'];
+            $idAutor = $dados['id_autor'];
+            $avatarAutor = $dados['avatar'];
+            $nomeAutor = $dados['nome'];      
+            
+            echo '
+                <header class="mb-3 d-flex justify-content-between align-items-center">
+                    <a class="d-inline me-1 voltar-perfil p-1" href="home.php"><i class="fa-solid px-1 fa-arrow-left fa-md" style="color: #FFFFFF;"></i></a>
+                    <h1 class="ubuntu-bold d-inline m-0 p-0">Post '. $nomeAutor .'</h1>
+                    <small class="ubuntu-light d-none d-md-inline">'. $dataPostagem .'</small>
+                </header>
+
+                <article class="post p-3">
+                    <header>
+                        <section class="d-flex align-items-center">
+                            <figure>
+                                <a href="perfil.php?id='. $idAutor .'">
+                                    <img class="border avatar-perfil-postagem "src="'.$avatarAutor.'" alt="Avatar do usuário">
+                                </a>
+                            </figure>
+                            <h3 class="ubuntu-bold">'. $nomeAutor .'</h3>                                        
+                        </section>
+                    </header>
+                    <section>
+                        <p class="ubuntu-regular">
+                            '. $textoPostagem .'
+                        </p>
+                    </section>
+                    <footer class="d-flex justify-content-between">
+                        <small class="ubuntu-light">'. $dataPostagem .'</small>
+                    </footer> 
+                </article>
+            ';
         }
     }
 ?>

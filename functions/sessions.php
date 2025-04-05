@@ -14,8 +14,8 @@ include 'conn.php';
         }
     }
 
-    //FUNÇÃO QUE VERIFICA SE O ID PASSADO PELO GET EXISTE NO DB
-    function verificarIDGET($mysqli){
+    //FUNÇÃO QUE VERIFICA SE O ID DE PERFIL PASSADO PELO GET EXISTE NO DB
+    function verificarIDperfil($mysqli){
         $id = $mysqli->real_escape_string($_GET['id']);
 
         $sql_code = "SELECT COUNT(*) AS total FROM usuarios WHERE id = '$id'";
@@ -25,6 +25,25 @@ include 'conn.php';
 
             if($dados['total'] == 0){
                 header("Location: paginas-erro/erro-perfil-inexistente.php");
+                exit;
+            }
+        } else {
+            header("Location: paginas-erro/erro-conexao.php");
+            exit;
+        }
+    }
+
+    //FUNÇÃO QUE VERIFICA SE O ID DE POST PASSADO PELO GET EXISTE NO DB
+    function verificarIDpost($mysqli){
+        $id = $mysqli->real_escape_string($_GET['id']);
+
+        $sql_code = "SELECT COUNT(*) AS total FROM postagens WHERE id = '$id'";
+
+        if($query = $mysqli->query($sql_code)){
+            $dados = $query->fetch_assoc();
+
+            if($dados['total'] == 0){
+                header("Location: paginas-erro/erro-post-inexistente.php");
                 exit;
             }
         } else {
