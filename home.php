@@ -3,6 +3,7 @@ session_start();
 include 'functions/feed.php';
 include 'functions/ui-padrao.php';
 include 'functions/sessions.php';
+include 'functions/feedback.php';
 include 'functions/acesso-redirecionar.php';
 //função que controla acesso apenas para usuários logados
 acessoLogado();
@@ -67,6 +68,8 @@ adicionaPostagemDB($mysqli);
                         <header>
                             <h1 class="ubuntu-bold d-none d-lg-block">Explorar</h1>
                         </header>
+                        <!--FUNÇÃO QUE INJETA A BARRA DE PESQUISA ESPECIAL DA HOME - QUE ENCAMINHA PARA O EXPLORAR + PESQUISA NO GET-->
+                        <?php pesquisaHome();?>
                     </aside>       
                 </div>
             </div>  

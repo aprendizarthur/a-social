@@ -23,6 +23,12 @@ function barraFerramentas(){
                 <li>
                     <a class="my-2" href="perfil.php?id=' . $_SESSION['id_usuario'] . '"><i class="fa-regular fa-user fa-xl px-2" style="color: #272727;"></i><h2 class="ubuntu-regular d-none d-lg-inline-block"> Perfil</h2></a>
                 </li>
+                <li class="d-none d-lg-block">
+                    <a class=" my-2" href="salvos.php"><i class="fa-regular fa-bookmark fa-lg px-2" style="color: #272727;"></i><h2 class="ubuntu-regular d-none d-lg-inline-block"> Itens Salvos</h2></a>
+                </li>
+                <li>
+                    <a class="d-lg-none my-2" href="salvos.php"><i class="fa-regular fa-bookmark fa-lg px-2" style="color: #272727;"></i><h2 class="ubuntu-regular d-none d-lg-inline-block"> Itens Salvos</h2></a>
+                </li>
                 <li>
                     <a class="d-lg-none my-2" href="home.php#nova-postagem"><i class="fa-solid fa-plus fa-lg" style="color: #272727;"></i></a>
                 </li>

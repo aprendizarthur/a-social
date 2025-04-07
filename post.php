@@ -3,6 +3,7 @@ session_start();
 include 'functions/ui-padrao.php';
 include 'functions/feed.php';
 include 'functions/sessions.php';
+include 'functions/feedback.php';
 include 'functions/acesso-redirecionar.php';
 //função que controla acesso apenas para usuários logados
 acessoLogado();

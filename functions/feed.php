@@ -66,7 +66,7 @@ include 'conn.php';
                 //enviando o feedback para a session
                 $_SESSION['feedback-sistema'] = $feedbackSistema;
 
-                header("Location: home.php");
+                header("Location: post.php?id-post=" . $idPostagem);
                 exit;
             } else {
                 header("Location: paginas-erro/erro-conexao.php");
@@ -215,7 +215,7 @@ include 'conn.php';
             echo '
                 <header class="mb-3 d-flex justify-content-between align-items-center">
                     <a class="d-inline me-1 voltar-perfil p-1" href="home.php"><i class="fa-solid px-1 fa-arrow-left fa-md" style="color: #FFFFFF;"></i></a>
-                    <h1 class="ubuntu-bold d-inline m-0 p-0">Post '. $nomeAutor .'</h1>
+                    <h1 class="ubuntu-bold d-inline m-0 p-0">Post de '. $nomeAutor .'</h1>
                     <small class="ubuntu-light d-none d-md-inline">'. $dataPostagem .'</small>
                 </header>
 
@@ -314,6 +314,32 @@ include 'conn.php';
                 $id = $idPostagem;
 
                 $sql_code = "SELECT COUNT(*) AS total FROM visualizacoes WHERE id_post = '$idPostagem'";
+
+                if($query = $mysqli->query($sql_code)){
+                    $dados = $query->fetch_assoc();
+                    
+                    return $dados['total'];
+                }
+            }
+        }
+
+        function totalCurtidasPOST($mysqli, $idPostagem){
+            //se está na página de post, pega o id da postagem pelo get
+            if(!empty($_GET['id-post'])){
+                $id = $mysqli->real_escape_string($_GET['id-post']);
+
+                $sql_code = "SELECT COUNT(*) AS total FROM curtidas WHERE id_post = '$id'";
+
+                if($query = $mysqli->query($sql_code)){
+                    $dados = $query->fetch_assoc();
+                    
+                    return $dados['total'];
+                }
+            } else {
+                //se for em outra página sem o GET ID-POST (perfil, feed, ...) pega a variavel com o id, que a função de imprimir postagem passa
+                $id = $idPostagem;
+
+                $sql_code = "SELECT COUNT(*) AS total FROM curtidas WHERE id_post = '$idPostagem'";
 
                 if($query = $mysqli->query($sql_code)){
                     $dados = $query->fetch_assoc();

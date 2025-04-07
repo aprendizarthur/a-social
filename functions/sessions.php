@@ -1,18 +1,6 @@
 <?php 
 include 'conn.php';
-//ARQUIVO EXCLUSIVO PARA FUNÇÕES DE SESSÃO DE USUÁRIO / REGISTRO / LOGIN / EXIBIR PERFIL / FEEDBACKS SISTEMA
-
-    //FUNÇÃO QUE MOSTRA FEEDBACKS DO SISTEMA
-    function feedbackSistema(){
-        //se existem feedback apresenta ele pro usuário
-        if(!empty($_SESSION['feedback-sistema'])){
-            echo "<span class=\"ubuntu-regular\">" . $_SESSION['feedback-sistema'] . "</span>"; 
-            //limpando feedback após printar pro usuário
-            unset($_SESSION['feedback-sistema']);
-        } else {
-            echo "<span class=\"ubuntu-regular\"> Nenhuma mensagem do sistema </span>"; 
-        }
-    }
+//ARQUIVO EXCLUSIVO PARA FUNÇÕES DE SESSÃO DE USUÁRIO / REGISTRO / LOGIN / EXIBIR PERFIL 
 
     //FUNÇÃO QUE VERIFICA SE O ID DE PERFIL PASSADO PELO GET EXISTE NO DB
     function verificarIDperfil($mysqli){

@@ -1,5 +1,15 @@
 /* Estilos para formulários login e registro */
 
+#pesquisa{
+    border: solid 1px #272727;
+    border-radius: 24px !important;
+    width: 80%;
+}
+
+#confirma-pesquisa:hover{
+    color: #24A4F2 !important;
+}
+
 #alerta-erros:empty{
     display: none;
 }
