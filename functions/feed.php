@@ -215,8 +215,8 @@ include 'conn.php';
             echo '
                 <header class="mb-3 d-flex justify-content-between align-items-center">
                     <a class="d-inline me-1 voltar-perfil p-1" href="home.php"><i class="fa-solid px-1 fa-arrow-left fa-md" style="color: #FFFFFF;"></i></a>
-                    <h1 class="ubuntu-bold d-inline m-0 p-0">Post de '. $nomeAutor .'</h1>
-                    <small class="ubuntu-light d-none d-md-inline">'. $dataPostagem .'</small>
+                    <h2 class="ubuntu-bold d-inline m-0 p-0">Post de '. $nomeAutor .'</h2>
+                    <span class="ubuntu-light d-none d-md-inline"><i class="fa-solid fa-eye fa-md me-2" style="color: #979797;"></i>'.$visualizacoesPostagem.'</span>
                 </header>
 
                 <article class="post p-3">
@@ -238,7 +238,6 @@ include 'conn.php';
                     <footer class="d-flex justify-content-between">
                         <small class="ubuntu-light">'. $dataPostagem .'</small>
                         <span class="ubuntu-light"><i class="fa-solid fa-comment fa-md me-2" style="color: #979797;"></i>'.$comentariosPostagem.'</span>
-                        <span class="ubuntu-light"><i class="fa-solid fa-eye fa-md me-2" style="color: #979797;"></i>'.$visualizacoesPostagem.'</span>
                     </footer> 
                 </article>
             ';
