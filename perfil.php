@@ -8,6 +8,8 @@ include 'functions/acesso-redirecionar.php';
 acessoLogado();
 //função que verifica o ID do perfil enviado pelo GET e se ele existe no DB
 verificarIDperfil($mysqli);
+//função que realiza a ação de seguir/deixar de seguir usuários
+gerenciarSeguidores($mysqli);
 ?>
 
 <!DOCTYPE html>

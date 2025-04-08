@@ -7,11 +7,11 @@ include 'conn.php';
         echo '
             <section>
                 <div class="row d-flex p-2 justify-content-between">
-                    <div id="form-pesquisa" class="col-12 p-2 m-0">
+                    <div id="form-pesquisa" class="col-12 m-0">
                         <h1 class="ubuntu-bold mb-3">Explorar</h1>
                         <form method="GET">
                             <div class="d-inline form-group">
-                                <input class="p-2 d-inline ubuntu-light" type="text" name="pesquisa" id="pesquisa" placeholder="Digite algo para pesquisar">
+                                <input class="p-2 d-inline ubuntu-light" type="text" style="border: solid 2px #e3e7e9;" name="pesquisa" id="pesquisa" placeholder="Pesquise algo">
                             </div>
                             <button id="confirma-pesquisa" class="d-inline btn btn-primary" style="width:16%;" type="submit" name="submit-pesquisa-home"><i class="fas fa-search fa-lg"></i></button>
                         </form>   
@@ -42,7 +42,7 @@ include 'conn.php';
                                 <div class="d-flex justify-content-between align-items-top">
                                     <small id="bem-pequeno" class="ubuntu-light">Limite de 150 caracteres</small>
                                     <button class="btn btn-primary w-20 ubuntu-bold" name="submit-nova-postagem">Postar</button>
-                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -63,7 +63,7 @@ include 'conn.php';
                                 <div class="d-flex justify-content-between align-items-top">
                                     <small id="bem-pequeno" class="ubuntu-light">Limite de 150 caracteres</small>
                                     <button class="btn btn-primary w-20 ubuntu-bold" name="submit-novo-comentario">Comentar</button>
-                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -157,7 +157,7 @@ include 'conn.php';
                                         <figure>
                                             <img class="border avatar-perfil-postagem "src="'. $avatarAutor .'" alt="Avatar do usuário">
                                         </figure>
-                                        <h3 class="ubuntu-bold">'. $nomeAutor .'</h3>                                        
+                                        <h3 class="ubuntu-bold">'. $nomeAutor .'</h3>                                       
                                 </section>
                             </header>
                             <section>
@@ -233,6 +233,7 @@ include 'conn.php';
             $idPostagem = $dados['id'];
             $textoPostagem = $dados['texto'];
             $dataPostagem = $dados['data_publicacao'];
+            $botaoRelacionamento = botaoRelacionamento($mysqli);
             $visualizacoesPostagem = totalVisuPOST($mysqli, $idPostagem); 
             $comentariosPostagem = totalComPOST($mysqli,  $idPostagem); 
             $idAutor = $dados['id_autor'];
@@ -241,8 +242,8 @@ include 'conn.php';
             
             echo '
                 <header class="mb-3 d-flex justify-content-between align-items-center">
-                    <a class="d-inline me-1 voltar-perfil p-1" href="home.php"><i class="fa-solid px-1 fa-arrow-left fa-md" style="color: #FFFFFF;"></i></a>
-                    <h2 class="ubuntu-bold d-inline m-0 p-0">Post de '. $nomeAutor .'</h2>
+                    <a class="d-inline me-1 voltar-perfil p-1" href="'.$_SERVER['HTTP_REFERER'].'"><i class="fa-solid px-1 fa-arrow-left fa-md" style="color: #FFFFFF;"></i></a>
+                    '.$botaoRelacionamento.'  
                     <span class="ubuntu-light d-none d-md-inline"><i class="fa-solid fa-eye fa-md me-2" style="color: #979797;"></i>'.$visualizacoesPostagem.'</span>
                 </header>
 
@@ -254,7 +255,7 @@ include 'conn.php';
                                     <img class="border avatar-perfil-postagem "src="'.$avatarAutor.'" alt="Avatar do usuário">
                                 </a>
                             </figure>
-                            <h3 class="ubuntu-bold">'. $nomeAutor .'</h3>                                        
+                            <h3 class="ubuntu-bold">'. $nomeAutor .'</h3>                                       
                         </section>
                     </header>
                     <section>

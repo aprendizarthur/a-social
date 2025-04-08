@@ -1,6 +1,178 @@
 <?php 
 include 'conn.php';
-//ARQUIVO EXCLUSIVO PARA FUNÇÕES DE SESSÃO DE USUÁRIO / REGISTRO / LOGIN / EXIBIR PERFIL 
+//ARQUIVO EXCLUSIVO PARA FUNÇÕES DE SESSÃO DE USUÁRIO / REGISTRO / LOGIN / EXIBIR PERFIL / RELACIONAMENTOS
+
+    //FUNÇÃO QUE ADICIONA/REMOVE SEGUIDOR
+    function gerenciarSeguidores($mysqli){
+
+        //ADICIONAR SEGUIDOR
+        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit-seguir'])){
+           //verificando se o submit-seguir é de um perfil
+           if(!empty($_GET['id'])){
+                $IDseguido = $mysqli->real_escape_string($_GET['id']);
+                $IDseguidor = $mysqli->real_escape_string($_SESSION['id_usuario']);
+
+
+                $sql_code = "INSERT INTO relacionamentos (id_seguiu, id_seguido) VALUES ('$IDseguidor','$IDseguido') ";
+
+                if($query = $mysqli->query($sql_code)){
+
+                    $_SESSION['feedback-sistema'] = "Usuário seguido";
+                    header("Location: " . $_SERVER['HTTP_REFERER']);
+                    exit;
+                }
+            }            
+        }
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit-seguir'])){
+            //verificando se o submit-seguir é de um post
+            if(!empty($_GET['id-post'])){
+
+                //pegando o id do autor do post que foi passado pelo get
+                $IDpost = $mysqli->real_escape_string($_GET['id-post']);
+
+                $sql_code = "SELECT id_autor FROM postagens WHERE id = '$IDpost'";
+
+                if($query = $mysqli->query($sql_code)){
+                    $dados = $query->fetch_assoc();
+                    $IDseguido = $dados['id_autor'];
+                }
+
+                $IDseguidor = $mysqli->real_escape_string($_SESSION['id_usuario']);
+    
+    
+                $sql_code = "INSERT INTO relacionamentos  (id_seguido, id_seguiu) VALUES ('$IDseguido', '$IDseguidor')";
+    
+                if($query = $mysqli->query($sql_code)){
+    
+                    $_SESSION['feedback-sistema'] = "Usuário seguido";
+                    header("Location: " . $_SERVER['HTTP_REFERER']);
+                    exit;
+                }
+            }     
+        }
+
+        //REMOVER SEGUIDOR
+        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit-unfollow'])){
+            //verificando se o submit-unfollow é de um perfil
+            if(!empty($_GET['id'])){
+                $IDseguido = $mysqli->real_escape_string($_GET['id']);
+                $IDseguidor = $mysqli->real_escape_string($_SESSION['id_usuario']);
+    
+    
+                $sql_code = "DELETE FROM relacionamentos WHERE id_seguido = '$IDseguido' AND id_seguiu = '$IDseguidor'";
+    
+                if($query = $mysqli->query($sql_code)){
+    
+                    $_SESSION['feedback-sistema'] = "Deixou de seguir o usuário";
+                    header("Location: " . $_SERVER['HTTP_REFERER']);
+                    exit;
+                }
+            }     
+        }
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit-unfollow'])){
+            //verificando se o submit-unfollow é de um post
+            if(!empty($_GET['id-post'])){
+
+                //pegando o id do autor do post que foi passado pelo get
+                $IDpost = $mysqli->real_escape_string($_GET['id-post']);
+
+                $sql_code = "SELECT id_autor FROM postagens WHERE id = '$IDpost'";
+
+                if($query = $mysqli->query($sql_code)){
+                    $dados = $query->fetch_assoc();
+                    $IDseguido = $dados['id_autor'];
+                }
+
+                $IDseguidor = $mysqli->real_escape_string($_SESSION['id_usuario']);
+    
+                $sql_code = "DELETE FROM relacionamentos WHERE id_seguido = '$IDseguido' AND id_seguiu = '$IDseguidor'";
+    
+                if($query = $mysqli->query($sql_code)){
+    
+                    $_SESSION['feedback-sistema'] = "Deixou de seguir o usuário";
+                    header("Location: " . $_SERVER['HTTP_REFERER']);
+                    exit;
+                }
+            }     
+        }
+    }
+    
+
+    //FUNÇÃO QUE EXIBE O BOTÃO DE SEGUIR / SEGUINDO (POSTAGEM E PERFIL)
+    function botaoRelacionamento($mysqli){
+        //VERIFICANDO SE É POST
+        if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id-post'])){
+            $IDusuario = $_SESSION['id_usuario'];
+            $IDpost = $_GET['id-post'];
+
+            //descobrindo id do autor
+            $sql_code = "SELECT id_autor FROM postagens WHERE id = '$IDpost'";
+
+            if($query = $mysqli->query($sql_code)){
+                $dados = $query->fetch_assoc();
+                $IDautor = $dados['id_autor'];
+
+                //se o post é do próprio usuário, não mostrar nada
+                if($IDusuario != $IDautor){
+                    //descobrindo se segue o usuário ou não
+                    $sql_code = "SELECT COUNT(*) AS total FROM relacionamentos WHERE id_seguiu = '$IDusuario' AND id_seguido = '$IDautor'";
+                    
+                    if($query = $mysqli->query($sql_code)){
+                        $dados = $query->fetch_assoc();
+
+                        //se não segue retorna o botão de seguir, se segue retorna o botão de unfollow
+                        if($dados['total'] == 0){
+                            return botaoSeguir($mysqli);
+                        } else {
+                            return botaoSeguindo($mysqli);
+                        }
+                    }    
+                } 
+            }
+        } 
+
+        //VERIFICANDO SE É PERFIL
+        if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])){
+            $IDusuario = $_SESSION['id_usuario'];
+            $IDperfil = $_GET['id'];
+
+            //se o perfil é do próprio usuário, não mostrar nada
+            if($IDusuario != $IDperfil){
+                //descobrindo se segue o usuário ou não
+                $sql_code = "SELECT COUNT(*) AS total FROM relacionamentos WHERE id_seguiu = '$IDusuario' AND id_seguido = '$IDperfil'";
+                    
+                if($query = $mysqli->query($sql_code)){
+                    $dados = $query->fetch_assoc();
+
+                    //se não segue retorna o botão de seguir, se segue retorna o botão de unfollow
+                    if($dados['total'] == 0){
+                        return botaoSeguir($mysqli);
+                    } else {
+                        return botaoSeguindo($mysqli);
+                    }
+                }    
+            } 
+        }
+    } 
+
+        //FUNÇÕES SECUNDÁRIAS CHAMADAS NA PRINCIPAL DE MOSTRAR BOTÃO DE SEGUIR/UNFOLLOW
+        function botaoSeguir($mysqli){
+            echo '
+                <form method="POST">
+                    <button type="submit" name="submit-seguir" class="w-100 mb-3 ubuntu-bold btn btn-secondary"><strong>Seguir</strong></button>
+                </form>
+            ';
+        }
+
+        function botaoSeguindo($mysqli){
+            echo '
+            <form method="POST">
+                <button type="submit" name="submit-unfollow" class="w-100 mb-3 ubuntu-bold btn btn-secondary"><strong>Deixar de seguir</strong></button>
+            </form>
+            ';
+        }
 
     //FUNÇÃO QUE VERIFICA SE O ID DE PERFIL PASSADO PELO GET EXISTE NO DB
     function verificarIDperfil($mysqli){
@@ -60,12 +232,16 @@ include 'conn.php';
         //consultando dados usuario
         $sql_code = "SELECT nome, fundoPerfil, avatar, biografia, registro FROM usuarios WHERE id = '$id'";
         
+        $botaoRelacionamento = botaoRelacionamento($mysqli);
+        $totalSeguindo = totalSeguindo($mysqli, $id);
+        $totalSeguidores = totalSeguidores($mysqli, $id);
+
         if($query = $mysqli->query($sql_code)){
             $dados = $query->fetch_assoc();
 
             echo '
                 <header class="mb-3 d-flex justify-content-between align-items-center">
-                    <a class="d-inline me-1 voltar-perfil p-1" href="home.php"><i class="fa-solid px-1 fa-arrow-left fa-md" style="color: #FFFFFF;"></i></a>
+                    <a class="d-inline me-1 voltar-perfil p-1" href="'.$_SERVER['HTTP_REFERER'].'"><i class="fa-solid px-1 fa-arrow-left fa-md" style="color: #FFFFFF;"></i></a>
                     <h1 class="ubuntu-bold d-inline m-0 p-0">Perfil de ' .$dados['nome'] . '</h1>
                     <small class="ubuntu-light d-none d-md-inline">'. $totalPostagens .' posts</small>
                 </header>
@@ -80,7 +256,7 @@ include 'conn.php';
                     <section id="dados-perfil">
                         <div class="row">
                         <div class="col-12">
-                            <h2 class="ubuntu-bold mb-1 p-0">'. $dados['nome'] .'</h2>
+                            <h2 class="d-inline ubuntu-bold mb-1 p-0">'. $dados['nome'] .'</h2> 
                             <blockquote class="ubuntu-regular m-0">
                                 '. $dados['biografia'] .'
                             </blockquote>
@@ -88,8 +264,9 @@ include 'conn.php';
                     <footer>
                         <small class="ubuntu-light"><i class="fa-solid fa-calendar-days fa-sm me-1" style="color: #979797;"></i> Ingressou em '. $dados['registro'] .'</small>
                         <hgroup class="mt-1">
-                            <h3 class="ubuntu-bold d-inline-block">0</h3><small class="ubuntu-light me-2"> Seguindo</small>
-                            <h3 class="ubuntu-bold d-inline-block">0</h3><small class="ubuntu-light"> Seguidores</small>    
+                            <h3 class="ubuntu-bold d-inline-block">'.$totalSeguindo.'</h3><small class="ubuntu-light me-2"> Seguindo</small>
+                            <h3 class="ubuntu-bold d-inline-block">'.$totalSeguidores.'</h3><small class="ubuntu-light"> Seguidores</small>
+                            
                         </hgroup>
                     </footer>
                 </article>
@@ -99,6 +276,27 @@ include 'conn.php';
             exit;
         }
     }
+
+        //FUNÇÕES SECUNDÁRIAS CHAMADAS NA FUNÇÃO PRINCIPAL DE EXIBIR PERFIL
+        function totalSeguindo($mysqli, $id){
+            $sql_code = "SELECT COUNT(*) AS total FROM relacionamentos WHERE id_seguiu = '$id'";
+
+            if($query = $mysqli->query($sql_code)){
+                $dados = $query->fetch_assoc();
+                
+                return $dados['total'];
+            }
+        }
+
+        function totalSeguidores($mysqli, $id){
+            $sql_code = "SELECT COUNT(*) AS total FROM relacionamentos WHERE id_seguido = '$id'";
+
+            if($query = $mysqli->query($sql_code)){
+                $dados = $query->fetch_assoc();
+                
+                return $dados['total'];
+            }
+        }
 
     //FUNCAO DE REGISTRO - CHAMANDO OUTRAS FUNCOES PARA COMPACTAR O CÓDIGO
     function registro($mysqli){    

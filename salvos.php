@@ -26,6 +26,7 @@ acessoLogado();
         <meta name="theme-color" content="#FFFFFF">
         <!-- Link CSS -->
         <link rel="stylesheet" href="css/style-layout.css">
+        <link rel="stylesheet" href="css/style-registro-login.css">
         <!-- Bootstrap 5 CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <!--Bootstrap 5 JS -->
@@ -55,7 +56,6 @@ acessoLogado();
 
                         <!--SCRIPT JS QUE FAZ A BARRA DE FEEDBACK SUMIR APÓS 3s-->
                         <script src="functions/barra-feedback.js"></script>
-
 
                             
                     </section>

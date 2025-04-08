@@ -96,6 +96,20 @@ body{
     border: solid 2px #24A4F2 !important;
 }
 
+.btn-tertiary{
+    border-radius: 24px !important;
+    background-color: #ffffff !important;
+    color: #272727 !important;
+    border: solid 2px #272727 !important;
+}
+
+.btn-tertiary:hover{
+    border-radius: 24px !important;
+    background-color: #24A4F2 !important;
+    color: #ffffff !important;
+    border: solid 2px #24A4F2 !important;
+}
+
 /* Estilos Feed */
 #feed{
     background-color: #FFFFFF;
@@ -113,10 +127,6 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-#form-nova-postagem{
-    border: solid 1px #e3e7e9;
 }
 
 textarea{

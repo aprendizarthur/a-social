@@ -12,7 +12,7 @@ include 'feed.php';
                         <h1 class="ubuntu-bold mb-3">Explorar</h1>
                         <form method="GET">
                             <div class="d-inline form-group">
-                                <input class="p-2 d-inline ubuntu-light" type="text" name="pesquisa" id="pesquisa" placeholder="Digite algo para pesquisar">
+                                <input class="p-2 d-inline ubuntu-light" type="text" name="pesquisa" style="border: solid 2px #e3e7e9;" id="pesquisa" placeholder="Digite algo para pesquisar">
                             </div>
                             <button id="confirma-pesquisa" class="d-inline btn btn-primary" style="width:16%;" type="submit"><i class="fas fa-search fa-lg"></i></button>
                         </form>   
