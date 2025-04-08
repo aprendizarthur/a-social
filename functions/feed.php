@@ -57,6 +57,7 @@ include 'conn.php';
             <section>
                 <div class="row d-flex p-2 justify-content-between">
                     <div id="form-novo-comentario" class="col-12 p-2 m-0">
+                        <h1 class="ubuntu-bold mb-3">Comentar</h1>
                         <form method="POST" id="comentar">
                             <div class="form-group">
                                 <textarea required spellcheck="true" class="ubuntu-regular w-100 form-control mb-2" rows="3" maxlength="150" minlength="1" id="texto-comentario" name="texto-comentario" placeholder="O que você quer responder?"></textarea>
@@ -244,9 +245,9 @@ include 'conn.php';
                 <header class="mb-3 d-flex justify-content-between align-items-center">
                     <a class="d-inline me-1 voltar-perfil p-1" href="'.$_SERVER['HTTP_REFERER'].'"><i class="fa-solid px-1 fa-arrow-left fa-md" style="color: #FFFFFF;"></i></a>
                     '.$botaoRelacionamento.'  
-                    <span class="ubuntu-light d-none d-md-inline"><i class="fa-solid fa-eye fa-md me-2" style="color: #979797;"></i>'.$visualizacoesPostagem.'</span>
-                </header>
-
+                    <h2 class="ubuntu-bold">Post</h2>
+                    <small class="ubuntu-light">'.$nomeAutor.'</small>
+                    </header>
                 <article class="post p-3">
                     <header>
                         <section class="d-flex align-items-center">
@@ -266,6 +267,7 @@ include 'conn.php';
                     <footer class="d-flex justify-content-between">
                         <small class="ubuntu-light">'. $dataPostagem .'</small>
                         <span class="ubuntu-light"><i class="fa-solid fa-comment fa-md me-2" style="color: #979797;"></i>'.$comentariosPostagem.'</span>
+                        <span class="ubuntu-light d-none d-md-inline"><i class="fa-solid fa-eye fa-md me-2" style="color: #979797;"></i>'.$visualizacoesPostagem.'</span>
                     </footer> 
                 </article>
             ';
@@ -349,31 +351,4 @@ include 'conn.php';
                 }
             }
         }
-
-        function totalCurtidasPOST($mysqli, $idPostagem){
-            //se está na página de post, pega o id da postagem pelo get
-            if(!empty($_GET['id-post'])){
-                $id = $mysqli->real_escape_string($_GET['id-post']);
-
-                $sql_code = "SELECT COUNT(*) AS total FROM curtidas WHERE id_post = '$id'";
-
-                if($query = $mysqli->query($sql_code)){
-                    $dados = $query->fetch_assoc();
-                    
-                    return $dados['total'];
-                }
-            } else {
-                //se for em outra página sem o GET ID-POST (perfil, feed, ...) pega a variavel com o id, que a função de imprimir postagem passa
-                $id = $idPostagem;
-
-                $sql_code = "SELECT COUNT(*) AS total FROM curtidas WHERE id_post = '$idPostagem'";
-
-                if($query = $mysqli->query($sql_code)){
-                    $dados = $query->fetch_assoc();
-                    
-                    return $dados['total'];
-                }
-            }
-        }
-
 ?>

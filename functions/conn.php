@@ -1,5 +1,5 @@
 <?php 
-//ARQUIVO EXCLUSIVO PARA CONEXÃO COM O DB E INICIAR SESSÃO
+//ARQUIVO EXCLUSIVO PARA CONEXÃO COM O DB 
 $host = 'localhost';
 $user = 'root';
 $pass = '';
