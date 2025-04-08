@@ -5,6 +5,8 @@ include 'functions/ui-padrao.php';
 include 'functions/sessions.php';
 include 'functions/feedback.php';
 include 'functions/acesso-redirecionar.php';
+//função que recebe a pesquisa pelo get e encaminha para o explorar.php
+resultadoPesquisaHOME($mysqli);
 //função que controla acesso apenas para usuários logados
 acessoLogado();
 //função que recebe dados do form de nova postagem e adiciona no db
@@ -26,6 +28,7 @@ adicionaPostagemDB($mysqli);
         <meta name="theme-color" content="#FFFFFF">
         <!-- Link CSS -->
         <link rel="stylesheet" href="css/style-layout.css">
+        <link rel="stylesheet" href="css/style-registro-login.css">
         <!-- Bootstrap 5 CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <!--Bootstrap 5 JS -->
@@ -65,11 +68,8 @@ adicionaPostagemDB($mysqli);
                             
                     </section>
                     <aside id="explorar" class="d-none d-lg-block col-lg-3">
-                        <header>
-                            <h1 class="ubuntu-bold d-none d-lg-block">Explorar</h1>
-                        </header>
                         <!--FUNÇÃO QUE INJETA A BARRA DE PESQUISA ESPECIAL DA HOME - QUE ENCAMINHA PARA O EXPLORAR + PESQUISA NO GET-->
-                        <?php pesquisaHome();?>
+                        <?php novaPesquisaHOME($mysqli);?>
                     </aside>       
                 </div>
             </div>  

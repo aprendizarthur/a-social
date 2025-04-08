@@ -2,6 +2,33 @@
 include 'conn.php';
 //ARQUIVO EXCLUSIVO PARA GERENCIAR ENVIO POSTAGEM E FEED DO USUÁRIO
 
+    //FUNÇÃO QUE IMPRIME O FORM PARA PESQUISA NA PAGINA HOME
+    function novaPesquisaHOME($mysqli){
+        echo '
+            <section>
+                <div class="row d-flex p-2 justify-content-between">
+                    <div id="form-pesquisa" class="col-12 p-2 m-0">
+                        <h1 class="ubuntu-bold mb-3">Explorar</h1>
+                        <form method="GET">
+                            <div class="d-inline form-group">
+                                <input class="p-2 d-inline ubuntu-light" type="text" name="pesquisa" id="pesquisa" placeholder="Digite algo para pesquisar">
+                            </div>
+                            <button id="confirma-pesquisa" class="d-inline btn btn-primary" style="width:16%;" type="submit" name="submit-pesquisa-home"><i class="fas fa-search fa-lg"></i></button>
+                        </form>   
+                    </div>
+                </div>
+            </section>
+        ';    
+    }
+
+    function resultadoPesquisaHOME($mysqli){
+        if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['submit-pesquisa-home'])){
+            $pesquisa = $mysqli->real_escape_string($_GET['pesquisa']);
+
+            header("Location: explorar.php?pesquisa=" . $pesquisa);
+        }
+    }
+
     //FUNÇÃO QUE EXIBE O FORMULÁRIO PARA NOVA POSTAGEM
     function novaPostagem(){
         echo '

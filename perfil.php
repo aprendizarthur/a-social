@@ -59,9 +59,7 @@ verificarIDperfil($mysqli);
 
                     </section>
                     <aside id="explorar" class="d-none d-lg-block col-lg-3">
-                        <header>
-                            <h1 class="ubuntu-bold d-none d-lg-block">Explorar</h1>
-                        </header>
+                        
                     </aside>       
                 </div>
             </div>  

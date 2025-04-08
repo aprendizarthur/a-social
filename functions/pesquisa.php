@@ -1,6 +1,7 @@
 <?php 
 include 'conn.php';
-include 'sessions.php';
+include 'feed.php';
+
 //ARQUIVO EXCLUSIVO PARA FUNÇÕES RELACIONADAS AO EXPLORAR E PESQUISAS
     //FUNÇÃO QUE IMPRIME O FORM PARA PESQUISAR NA PAGINA EXPLORAR
     function novaPesquisa($mysqli){
@@ -20,9 +21,6 @@ include 'sessions.php';
             </section>
         ';
     }
-
-    //FUNÇÃO QUE IMPRIME O FORM PARA PESQUISA NA PAGINA HOME
-    
 
     //FUNÇÃO QUE PEGA OS DADOS DA PESQUISA E IMPRIME OS RESULTADOS
     function resultadoPesquisa($mysqli){
@@ -106,6 +104,8 @@ include 'sessions.php';
                             $idPostagem = $dados['id'];
                             $textoPostagem = $dados['texto'];
                             $dataPostagem = $dados['data_publicacao'];
+                            $visualizacoesPostagem = totalVisuPOST($mysqli, $idPostagem); 
+                            $comentariosPostagem = totalComPOST($mysqli,  $idPostagem);
                             $idAutor = $dados['id_autor'];
                             $nomeAutor = $dados['nome'];
                             $avatarAutor = $dados['avatar'];
@@ -128,7 +128,8 @@ include 'sessions.php';
                                         </section>
                                         <footer class="d-flex justify-content-between">
                                             <small class="ubuntu-light">'. $dataPostagem .'</small>
-                                            
+                                            <span class="ubuntu-light"><i class="fa-solid fa-comment fa-md me-2" style="color: #979797;"></i>'.$comentariosPostagem.'</span>
+                                            <span class="ubuntu-light"><i class="fa-solid fa-eye fa-md me-2" style="color: #979797;"></i>'.$visualizacoesPostagem.'</span>
                                         </footer> 
                                     </a>
                                 </article>
@@ -139,9 +140,7 @@ include 'sessions.php';
                 } else {
                     header("Location: paginas-erro/erro-conexao.php");
                     exit;
-                }
-
-            
+                }            
         }
     }
 
