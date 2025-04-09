@@ -2,6 +2,57 @@
 include 'conn.php';
 //ARQUIVO EXCLUSIVO PARA GERENCIAR ENVIO POSTAGEM E FEED DO USUÁRIO
 
+    //FUNÇÃO DO FEED PARA POSTS DE QUEM EU SIGO
+    function feedSigo($mysqli){
+        //pegando meu ID da session
+        $meuID = $_SESSION['id_usuario'];
+
+        //selecionando as postagens de quem eu sigo e as minhas, ordenadas pelas mais recentes
+        $sql_code = "SELECT * FROM postagens WHERE id_autor IN(SELECT id_seguido FROM relacionamentos WHERE id_seguiu = '$meuID') OR id_autor = '$meuID' ORDER BY data_publicacao DESC";
+
+        if($query = $mysqli->query($sql_code)){
+            while($dados = $query->fetch_assoc()){
+                //pegando dados da postagem
+                $idPostagem = $dados['id'];
+                $textoPostagem = $dados['texto'];
+                $dataPostagem = $dados['data_publicacao'];
+                $visualizacoesPostagem = totalVisuPOST($mysqli, $idPostagem); 
+                $comentariosPostagem = totalComPOST($mysqli,  $idPostagem);  
+                $idAutor = $dados['id_autor'];
+                $nomeAutor = $dados['nome'];
+                $avatarAutor = $dados['avatar'];
+
+                echo '
+                    <article class="post p-3">
+                        <a class="link-post" href="post.php?id-post='.$idPostagem .'">
+                            <header>
+                                <section class="d-flex align-items-center">
+                                        <figure>
+                                            <img class="border avatar-perfil-postagem "src="'. $avatarAutor .'" alt="Avatar do usuário">
+                                        </figure>
+                                        <h3 class="ubuntu-bold">'. $nomeAutor .'</h3>                                        
+                                </section>
+                            </header>
+                            <section>
+                                <p class="ubuntu-regular">
+                                    '. $textoPostagem .'
+                                </p>
+                            </section>
+                            <footer class="d-flex justify-content-between">
+                                <small class="ubuntu-light">'. $dataPostagem .'</small>
+                                <span class="ubuntu-light"><i class="fa-solid fa-comment fa-md me-2" style="color: #979797;"></i>'.$comentariosPostagem.'</span>
+                                <span class="ubuntu-light"><i class="fa-solid fa-eye fa-md me-2" style="color: #979797;"></i>'.$visualizacoesPostagem.'</span>
+                            </footer> 
+                        </a>
+                    </article>
+                ';
+            }
+        } else {
+            header("Location: paginas-erro/erro-conexao.php");
+            exit;
+        }
+    }
+
     //FUNÇÃO QUE IMPRIME O FORM PARA PESQUISA NA PAGINA HOME
     function novaPesquisaHOME($mysqli){
         echo '
@@ -132,7 +183,7 @@ include 'conn.php';
         }
     }
 
-    //FUNÇÃO QUE MOSTRAR OS TODOS COMENTÁRIOS DO POST NA SUA PRÓPRIA PÁGINA
+    //FUNÇÃO QUE MOSTRA OS TODOS COMENTÁRIOS DO POST NA SUA PRÓPRIA PÁGINA
     function comentariosPost($mysqli){
         $id = $mysqli->real_escape_string($_GET['id-post']);
 

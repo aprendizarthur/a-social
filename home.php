@@ -9,6 +9,8 @@ include 'functions/acesso-redirecionar.php';
 resultadoPesquisaHOME($mysqli);
 //função que controla acesso apenas para usuários logados
 acessoLogado();
+//função que atualiza dados do usuário
+dadosUsuario($mysqli);
 //função que recebe dados do form de nova postagem e adiciona no db
 adicionaPostagemDB($mysqli);
 ?>
@@ -64,7 +66,10 @@ adicionaPostagemDB($mysqli);
                         <?php novaPostagem(); ?>
 
                     <!--FEED-->
-
+                        <!--FUNÇÃO PHP QUE INJETA O FEED DOS POSTS DE QUEM EU SIGO-->
+                        <?php feedSigo($mysqli);?>
+                        <!--FUNÇÃO PHP QUE INJETA PERFIS SUGERIDOS PARA SEGUIR-->
+                        
                             
                     </section>
                     <aside id="explorar" class="d-none d-lg-block col-lg-3">

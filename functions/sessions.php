@@ -2,6 +2,20 @@
 include 'conn.php';
 //ARQUIVO EXCLUSIVO PARA FUNÇÕES DE SESSÃO DE USUÁRIO / REGISTRO / LOGIN / EXIBIR PERFIL / SEGUIDORES
 
+    //FUNÇÃO QUE ATUALIZA DADOS DO USUÁRIO A CADA RECARREGAMENTO
+    function dadosUsuario($mysqli){
+        $ID = $mysqli->real_escape_string($_SESSION['id_usuario']);
+
+        $sql_code = "SELECT * FROM usuarios WHERE id = '$ID'";
+
+        if($query = $mysqli->query($sql_code)){
+            $dados = $query->fetch_assoc();
+            
+            $_SESSION['nome_usuario'] = $dados['nome'];
+            $_SESSION['avatar_usuario'] = $dados['avatar'];
+            $_SESSION['background_usuario'] = $dados['fundoPerfil'];
+        }
+    }
     //FUNÇÃO QUE ADICIONA/REMOVE SEGUIDOR
     function gerenciarSeguidores($mysqli){
 
