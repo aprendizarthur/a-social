@@ -37,11 +37,10 @@
 </div>
 
 <ul>
-  <li>Entrega ao usuário a experiência de uma rede social simples</li>
   <li>Entrega um feed com postagens de quem a pessoa segue</li>
   <li>Permite criar postagens e comentar nas postagens de outros usuários</li>
   <li>Em cada postagem mostra a quantidade de visualizações e comentários que ele teve</li>
-  <li>Realiza pesquisas na aba explorar mostrando usuários ou postagens relacionadas ao tema da pesquisa</li>
+  <li>Realiza pesquisas na aba explorar mostrando usuários e postagens relacionadas ao tema da pesquisa</li>
   <li>Possui páginas específicas para perfil de usuário e post</li>
 </ul>
 
