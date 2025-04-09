@@ -42,6 +42,7 @@
   <li>Em cada postagem mostra a quantidade de visualizações e comentários que ele teve</li>
   <li>Realiza pesquisas na aba explorar mostrando usuários e postagens relacionadas ao tema da pesquisa</li>
   <li>Possui páginas específicas para perfil de usuário e post</li>
+  <li>Layout responsivo</li>
 </ul>
 
 <div align="left" style="margin-top: 20px; margin-bottom: 20px;">
